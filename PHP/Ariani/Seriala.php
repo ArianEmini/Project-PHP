@@ -374,32 +374,34 @@ function test_input($data) {
           myVideo.width = 420; 
       } 
       </script> 
+  <button href="Seriala.php?file=231f.jpg">Dowload File</button>
+  <?php
 
-<a href="Seriala.php?file=HBO Ballers Official Trailer.mp4">DONWLOAD</a>
-
-<?php
-if(!empty($_GET['file']))
-{
-    $filename=basename($_GET['file']);
-    $filepath='sh/'.$filename;
-    if(!empty($filename)&& file_exists($filepath)){
-        header("Cache-Control:public");
-        header("Content-Description:FIle Transfer");
-        header("Content-Disposition:attachmen;filename=$filename");
-        header("Content-Type:application/zip");
-        header("Content-Transfer-Emcoding:binary");
-
-        readfile($filepath);
+  if(!empty($_GET['file'])){
+    $fileName = basename($_GET['file']);
+    $filePath = 'sh/'.$fileName;
+    if(!empty($fileName) && file_exists($filePath)){
+        // Define headers
+        header("Cache-Control: public");
+        header("Content-Description: File Transfer");
+        header("Content-Disposition: attachment; filename=$fileName");
+        header("Content-Type: application/zip");
+        header("Content-Transfer-Encoding: binary");
+        
+        // Read the file
+        readfile($filePath);
         exit;
-
+    }else{
+        echo 'The file does not exist.';
     }
-    else{
-        echo "This File Does not exist.";
-    }
-    
 }
 
+
 ?>
+
+
+
+
 </div>
 </div>
 
